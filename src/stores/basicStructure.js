@@ -7,45 +7,45 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    title: 'Mycustome title',
-    links: [
-        'http://google.com',
-        'http://yahoo.com',
-        'http://bing.com'
-    ]
-},
-getters: {
-    countLinks: state => {
-        return state.links.length
-    }
-},
-mutations: {
-    ADD_LINK: (state, link) => {
-        state.links.push(link)
+    state: {
+        title: 'Mycustome title',
+        links: [
+            'http://google.com',
+            'http://yahoo.com',
+            'http://bing.com'
+        ]
     },
-    REMOVE_LINK: (state, link) => {
-        state.links.splice(link, 1)
+    getters: {
+        countLinks: state => {
+            return state.links.length
+        }
     },
-    REMOVE_ALL: (state) => {
-        state.links = []
-    }
-},
-actions: {
-    removeLink: (context, link) => {
-        context.commit('REMOVE_LINK', link)
+    mutations: {
+        ADD_LINK: (state, link) => {
+            state.links.push(link)
+        },
+        REMOVE_LINK: (state, link) => {
+            state.links.splice(link, 1)
+        },
+        REMOVE_ALL: (state) => {
+            state.links = []
+        }
     },
-    removeAll({
-        commit
-    }) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                commit('REMOVE_ALL')
-                resolve()
-            }, 1500)
-        })
+    actions: {
+        removeLink: (context, link) => {
+            context.commit('REMOVE_LINK', link)
+        },
+        removeAll({
+            commit
+        }) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    commit('REMOVE_ALL')
+                    resolve()
+                }, 1500)
+            })
+        }
     }
-}
 })
 
 // store.state.a // -> `moduleA`'s state
